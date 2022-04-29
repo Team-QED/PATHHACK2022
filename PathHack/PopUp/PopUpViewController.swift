@@ -9,7 +9,6 @@ import UIKit
 import Gifu
 
 class PopUpViewController: UIViewController {
-    // 당신, 알고보니 교양있는 개발자!
     
     private lazy var bgView = UIView().then {
         $0.backgroundColor = .black

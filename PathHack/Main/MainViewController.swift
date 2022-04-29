@@ -10,6 +10,7 @@ import SnapKit
 
 class MainViewController: UIViewController {
     private let talents: [TalentType] = [.developer, .delivery, .workout]
+    private var isFirst = true
     
     private var currentPage = 0 {
         didSet {
@@ -234,11 +235,12 @@ class MainViewController: UIViewController {
         recentBadgeCollectionView.reloadData()
         talentCollectionView.reloadData()
         
-        if badgeData[3].level == .gold {
+        if badgeData[3].level == .gold && isFirst {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 let popUpViewController = PopUpViewController()
                 popUpViewController.modalPresentationStyle = .overFullScreen
                 self.present(popUpViewController, animated: false)
+                self.isFirst = false
             }
         }
     }
