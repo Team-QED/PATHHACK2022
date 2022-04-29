@@ -54,7 +54,7 @@ class AssessmentViewController: UIViewController {
         self.baseView.addSubview(self.collectionView)
         
         self.sendButton.backgroundColor = .appColor(.lightGreenColor)
-        self.sendButton.setTitle("제출", for: .normal)
+        self.sendButton.setTitle("완    료", for: .normal)
         self.sendButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         self.sendButton.clipsToBounds = true
         self.sendButton.layer.cornerRadius = 16
