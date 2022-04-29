@@ -72,7 +72,7 @@ class SplashViewController: UIViewController {
     private func attribute() {
         view.backgroundColor = .white
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             self.showMainVC()
         })
     }
