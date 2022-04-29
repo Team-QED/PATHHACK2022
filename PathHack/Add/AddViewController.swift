@@ -26,6 +26,8 @@ final class AddViewController: UIViewController {
     }
     
     private func setUI() {
+        self.view.backgroundColor = .white
+        
         self.collectionView.register(AddCollectionViewCell.self, forCellWithReuseIdentifier: AddCollectionViewCell.identifier)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -51,8 +53,18 @@ extension AddViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = AssessmentViewController()
-        navigationController?.pushViewController(vc, animated: false)
+        let inType = Badge.InType.allCases[indexPath.row]
+        switch inType {
+        case .pathfinder:
+            let vc = QRScannerViewController()
+//            let vc = QRCodeViewController(QRCode: "pathfinder")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            
+        default:
+            let vc = AssessmentViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

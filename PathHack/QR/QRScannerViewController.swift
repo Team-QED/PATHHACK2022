@@ -11,6 +11,7 @@ class QRScannerViewController: UIViewController {
     
     // MARK: - Property
     
+    private let titleLabel = UILabel()
     private let vQRScanner = QRScannerView()
     private let dismissButton = UIButton()
     
@@ -31,7 +32,12 @@ class QRScannerViewController: UIViewController {
 
 extension QRScannerViewController {
     private func setUI() {
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.appColor(.darkGreenColor)
+        
+        titleLabel.textAlignment = .center
+        titleLabel.text = "패스파인다의 QR 코드를 찍어주세요"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.mySystemFont(ofSize: 18, weight: .bold)
         
         vQRScanner.layer.cornerRadius = 8
         vQRScanner.clipsToBounds = true
@@ -42,7 +48,6 @@ extension QRScannerViewController {
         let tempColorImage = tempImage?.withTintColor(.white, renderingMode: .alwaysOriginal)
         dismissButton.setImage(tempColorImage, for: .normal)
         dismissButton.addTarget(self, action: #selector(dismissDidTap), for: .touchUpInside)
-        dismissButton.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi / 2))
     }
     
     @objc private func dismissDidTap() {
@@ -52,13 +57,17 @@ extension QRScannerViewController {
     private func setConstraint() {
         let guide = view.safeAreaLayoutGuide
         
-        [vQRScanner, dismissButton].forEach {
+        [titleLabel, vQRScanner, dismissButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
             $0.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
         }
         
         NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -24),
+            titleLabel.bottomAnchor.constraint(equalTo: vQRScanner.topAnchor, constant: -40),
+            
             vQRScanner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             vQRScanner.widthAnchor.constraint(equalToConstant: 200),
             vQRScanner.heightAnchor.constraint(equalToConstant: 200),
@@ -76,6 +85,21 @@ extension QRScannerViewController {
 
 extension QRScannerViewController: QRScannerViewDelegate {
     func qrScanningSucceededWithCode(_ str: String) {
-        self.dismiss(animated: false)
+        if str == "pathfinder" {
+            self.dismiss(animated: true)
+        } else {
+            view.backgroundColor = UIColor.red
+            UIView.animate(
+                withDuration: 1,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: { [weak self] in
+                    self?.view.backgroundColor = UIColor.appColor(.darkGreenColor)
+                },
+                completion: { [weak self] _ in
+                    self?.dismiss(animated: true)
+                }
+            )
+        }
     }
 }
