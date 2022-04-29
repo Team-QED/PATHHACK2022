@@ -9,8 +9,18 @@ import Foundation
 
 struct Badge: Hashable {
     let inType: InType
-    let level: Level
     var currRecord: Int
+    
+    var level: Level {
+        switch self.currRecord {
+        case 0...100:
+            return .bronze
+        case 101...400:
+            return .silver
+        default:
+            return .gold
+        }
+    }
     
     var record: Int {
         switch self.level {
@@ -95,10 +105,10 @@ struct Badge: Hashable {
 
 
 var badgeData: [Badge] = [
-    Badge(inType: .book, level: .gold, currRecord: 500),
-    Badge(inType: .running, level: .silver, currRecord: 300),
-    Badge(inType: .movie, level: .bronze, currRecord: 10),
-    Badge(inType: .coding, level: .gold, currRecord: 600),
-    Badge(inType: .cook, level: .bronze, currRecord: 5),
-    Badge(inType: .bicycle, level: .silver, currRecord: 300),
+    Badge(inType: .book, currRecord: 500),
+    Badge(inType: .running, currRecord: 400),
+    Badge(inType: .movie, currRecord: 10),
+    Badge(inType: .coding, currRecord: 600),
+    Badge(inType: .cook, currRecord: 5),
+    Badge(inType: .bicycle, currRecord: 300),
 ]
