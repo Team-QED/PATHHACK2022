@@ -35,7 +35,7 @@ class MainBadgeCell: UITableViewCell {
     }
     
     func setProperties(badge: Badge) {
-        badgeLabel.text = badge.name
+        badgeLabel.text = badge.inType.name
         badgeProgressBar.setProgress(Float(badge.percent * 100), animated: false)
         percentLabel.text = "\(badge.percent)%"
     }

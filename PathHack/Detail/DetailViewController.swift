@@ -23,12 +23,12 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        badgeData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath) as? DetailTableViewCell else { fatalError() }
-        //    cell.drawCell(badgeData: <#T##[Dictionary<String, Any>]#>)
+        cell.drawCell(badgeData: badgeData[indexPath.row])
         return cell
     }
     

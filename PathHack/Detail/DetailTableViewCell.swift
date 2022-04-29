@@ -84,12 +84,9 @@ class DetailTableViewCell: UITableViewCell {
     
     func drawCell(badgeData: Badge) {
         badgeImageView.image = UIImage(named: badgeData.imageName)
-        targetLabel.text = badgeData.name
-        currRecordLabel.text = String(Int(badgeData.currRecord)) + " / " + String(Int(badgeData.level.rawValue))
-        
-        let percent = badgeData.percent > 1 ? 1 : badgeData.percent
-        updateProgressbar(percentage: percent)
-        
+        targetLabel.text = badgeData.inType.name
+        currRecordLabel.text = badgeData.percentStr
+        updateProgressbar(percentage: badgeData.percent)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
