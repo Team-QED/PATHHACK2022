@@ -92,8 +92,10 @@ class MainViewController: UIViewController {
         $0.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
     }
     
-    private let secondView = UIView().then {
+    private lazy var secondView = UIView().then {
         $0.backgroundColor = .appColor(.daisyColor)
+        $0.isUserInteractionEnabled = true
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapSecondView)))
     }
     
     private let profileImageView = UIImageView().then {
@@ -102,6 +104,7 @@ class MainViewController: UIViewController {
         $0.layer.cornerRadius = 65
         $0.clipsToBounds = true
         $0.layer.zPosition = 1
+        $0.isUserInteractionEnabled = true
     }
     
     private lazy var secondCheckLabel = UILabel().then {
@@ -121,11 +124,6 @@ class MainViewController: UIViewController {
         $0.text = "→ 확인하러 가기"
         $0.textColor = .black
         $0.font = .mySystemFont(ofSize: 12, weight: .regular)
-    }
-    
-    private let secondCheckButton = UIButton().then {
-        $0.setTitle("", for: .normal)
-        $0.addTarget(self, action: #selector(didTapSecondCheckButton), for: .touchUpInside)
     }
     
     private let thirdView = UIView().then {
@@ -193,6 +191,13 @@ class MainViewController: UIViewController {
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.register(RecentBadgeCell.self, forCellWithReuseIdentifier: RecentBadgeCell.identifier)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     override func loadView() {
@@ -286,6 +291,11 @@ class MainViewController: UIViewController {
             $0.trailing.equalTo(secondView).inset(margins)
         }
         
+        scrollView.addSubview(secondCheckSubLabel)
+        secondCheckSubLabel.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(secondView).inset(margins)
+        }
+        
         scrollView.addSubview(thirdView)
         thirdView.snp.makeConstraints {
             $0.top.equalTo(secondView.snp.bottom).offset(margins * 2)
@@ -350,11 +360,6 @@ class MainViewController: UIViewController {
             $0.bottom.equalTo(recentBadgeView).offset(-margins * 2)
         }
     }
-    
-    @objc private func didTapSecondCheckButton() {
-        let vc = DetailViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -393,5 +398,11 @@ extension MainViewController: UIScrollViewDelegate {
 extension MainViewController {
     @objc private func tapAddButton() {
         // 오늘 하루 평가 버튼 클릭
+        
+    }
+    
+    @objc private func tapSecondView() {
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
