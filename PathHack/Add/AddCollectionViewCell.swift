@@ -29,6 +29,7 @@ class AddCollectionViewCell: UICollectionViewCell {
         let imageName = inType.rawValue + "_gold"
         self.imageView.image = UIImage(named: imageName)
         self.titleLabel.text = inType.name
+        self.titleLabel.font = UIFont.mySystemFont(ofSize: 12, weight: .bold)
     }
 }
 
@@ -37,6 +38,9 @@ class AddCollectionViewCell: UICollectionViewCell {
 // MARK: - UI
 extension AddCollectionViewCell {
     private func setAttribute() {
+        self.contentView.backgroundColor = .white
+        self.contentView.makeShadow(shadowColor: .gray)
+        
         self.imageView.contentMode = .scaleAspectFit
         self.titleLabel.textColor = .black
         [self.imageView, self.titleLabel].forEach {

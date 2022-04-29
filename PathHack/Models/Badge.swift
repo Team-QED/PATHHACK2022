@@ -68,6 +68,7 @@ struct Badge: Hashable {
         case coding
         case cook
         case bicycle
+        case pathfinder
         
         var name: String {
             switch self {
@@ -83,6 +84,8 @@ struct Badge: Hashable {
                 return "요리"
             case .bicycle:
                 return "자전거"
+            case .pathfinder:
+                return "패스파인더"
             }
         }
     }
