@@ -9,5 +9,6 @@ target 'PathHack' do
 
   pod 'Then'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Gifu'
 
 end
