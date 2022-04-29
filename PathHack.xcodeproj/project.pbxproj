@@ -17,6 +17,7 @@
 		4FAB7BF3281BBD0100864EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */; };
 		4FAB7BF6281BBD0100864EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */; };
 		4FCA063D281C108E00B8ED9D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA063C281C108E00B8ED9D /* Badge.swift */; };
+		4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA0642281C34E200B8ED9D /* AddCollectionViewCell.swift */; };
 		70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */; };
 		824F2B28A0BC52D172607E9B /* Pods_PathHack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFB3004B7B15228C18901CF /* Pods_PathHack.framework */; };
 		CF224140281BDC3400C77CC7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF22413F281BDC3400C77CC7 /* UIView+Extensions.swift */; };
@@ -45,6 +46,7 @@
 		4FAB7BF5281BBD0100864EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FAB7BF7281BBD0100864EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FCA063C281C108E00B8ED9D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		4FCA0642281C34E200B8ED9D /* AddCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCollectionViewCell.swift; sourceTree = "<group>"; };
 		70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		CF22413F281BDC3400C77CC7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CF224146281BF0C400C77CC7 /* BadgeCircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCircleCell.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4F0F571D281BCD40006B6F04 /* AddViewController.swift */,
+				4FCA0642281C34E200B8ED9D /* AddCollectionViewCell.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */,
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
 				CF4FA44F281C21EA00F9EA3E /* UIApplication+Extensions.swift in Sources */,
+				4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */,
 				4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */,
 				CF423304281C17E80088A33B /* UIFont+Extensions.swift in Sources */,
 				4FCA063D281C108E00B8ED9D /* Badge.swift in Sources */,
