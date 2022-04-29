@@ -20,6 +20,13 @@ class DetailViewController: UIViewController {
     private func setUI() {
         navigationItem.title = "전체 배지"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "exports")?.withRenderingMode(.alwaysOriginal),
+            style:.plain,
+            target: self,
+            action: #selector(rightBarButtonDidTap)
+        )
+        
         view.backgroundColor = .white
         detailTableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.identifier)
         detailTableView.delegate = self
@@ -55,6 +62,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         88
     }
-    
-    
+}
+
+private extension DetailViewController {
+    @objc func rightBarButtonDidTap() {
+        let certificationViewController = CertificationViewController()
+        navigationController?.pushViewController(certificationViewController, animated: true)
+    }
 }
