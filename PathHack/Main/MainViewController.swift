@@ -9,15 +9,6 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
-    
-    private let badges: [Badge] = [
-//        Badge(name: "뱃지1", level: <#T##Badge.Level#>, currRecord: <#T##Double#>,  percent: 55, imageName: "profile"),
-//        Badge(name: "뱃지2", percent: 5, imageName: "profile"),
-//        Badge(name: "뱃지3", percent: 24, imageName: "profile"),
-//        Badge(name: "뱃지4", percent: 60, imageName: "profile"),
-//        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
-    ]
-    
     private lazy var scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
         $0.contentInsetAdjustmentBehavior = .never
@@ -235,10 +226,10 @@ class MainViewController: UIViewController {
         
         mainView.addSubview(mainLineView)
         mainLineView.snp.makeConstraints {
-            $0.top.equalTo(mainView)
+            $0.top.equalTo(mainView).offset(-300)
             $0.leading.equalToSuperview().offset(margins * 3)
             $0.width.equalTo(60)
-            $0.height.equalTo(UIScreen.main.bounds.height)
+            $0.height.equalTo(UIScreen.main.bounds.height + 300)
         }
         
         mainView.addSubview(mainCircleBgView)
@@ -365,9 +356,9 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == thirdBadgeCollectionView {
-            return badges.count
+            return badgeData.count
         } else {
-           return badges.count
+            return recordData.count
         }
     }
     
@@ -375,11 +366,11 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case thirdBadgeCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BadgeCircleCell.identifier, for: indexPath) as! BadgeCircleCell
-            cell.setProperties(badge: badges[indexPath.item])
+            cell.setProperties(badge: badgeData[indexPath.item])
             return cell
         case recentBadgeCollectionVIew:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentBadgeCell.identifier, for: indexPath) as! RecentBadgeCell
-            cell.setProperties(badge: badges[indexPath.item])
+            cell.setProperties(record: recordData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -389,7 +380,6 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("[Log] offset :", scrollView.contentOffset.y)
         moveAnimate(scrollView.contentOffset.y)
     }
 }

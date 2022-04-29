@@ -27,13 +27,7 @@ class RecentBadgeCell: UICollectionViewCell {
         $0.font = .systemFont(ofSize: 20, weight: .bold)
     }
     private let workingLael = UILabel().then {
-        $0.text = """
-        운동: +7점
-        
-        독서: +6점
-        
-        자전거: +5점
-        """
+        $0.text = ""
         $0.textColor = .black
         $0.font = .systemFont(ofSize: 13, weight: .regular)
         $0.numberOfLines = 0
@@ -49,8 +43,25 @@ class RecentBadgeCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setProperties(badge: Badge) {
-        badgeImageView.image = UIImage(named: badge.imageName)
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        workingLael.text = ""
+    }
+    
+    func setProperties(record: Record) {
+        let sortedInTypes = record.inTypes.sorted { $0.point > $1.point }
+        let image = sortedInTypes.first!.imageName
+        badgeImageView.image = UIImage(named: image)
+        for i in 0..<sortedInTypes.count where i < 3 {
+            let item = sortedInTypes[i]
+            self.workingLael.text! += i == 2
+            ? "\(item.inType.name): \(item.point)"
+            : "\(item.inType.name): \(item.point)\n\n"
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateLabel.text = Date().daysBetweenDate(toDate: dateFormatter.date(from: record.date)!)
     }
     
     private func attribute() {
