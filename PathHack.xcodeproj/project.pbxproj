@@ -18,6 +18,10 @@
 		4FAB7BF6281BBD0100864EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */; };
 		4FCA063D281C108E00B8ED9D /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA063C281C108E00B8ED9D /* Badge.swift */; };
 		4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA0642281C34E200B8ED9D /* AddCollectionViewCell.swift */; };
+		4FCA064F281C494B00B8ED9D /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA064D281C494B00B8ED9D /* QRScannerView.swift */; };
+		4FCA0650281C494B00B8ED9D /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA064E281C494B00B8ED9D /* QRScannerViewController.swift */; };
+		4FCA0652281C51B900B8ED9D /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA0651281C51B900B8ED9D /* QRCodeView.swift */; };
+		4FCA0654281C51C700B8ED9D /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA0653281C51C700B8ED9D /* QRCodeViewController.swift */; };
 		70DA4FC5281C364700D06419 /* AssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA4FC4281C364700D06419 /* AssessmentViewController.swift */; };
 		70DA4FC8281C3BED00D06419 /* AssessmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DA4FC7281C3BEC00D06419 /* AssessmentCollectionViewCell.swift */; };
 		70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */; };
@@ -49,6 +53,10 @@
 		4FAB7BF7281BBD0100864EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FCA063C281C108E00B8ED9D /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		4FCA0642281C34E200B8ED9D /* AddCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCollectionViewCell.swift; sourceTree = "<group>"; };
+		4FCA064D281C494B00B8ED9D /* QRScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
+		4FCA064E281C494B00B8ED9D /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		4FCA0651281C51B900B8ED9D /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		4FCA0653281C51C700B8ED9D /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		70DA4FC4281C364700D06419 /* AssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentViewController.swift; sourceTree = "<group>"; };
 		70DA4FC7281C3BEC00D06419 /* AssessmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 				4FAB7BE9281BBD0000864EC2 /* AppDelegate.swift */,
 				4FAB7BEB281BBD0000864EC2 /* SceneDelegate.swift */,
 				4FAB7BED281BBD0000864EC2 /* ViewController.swift */,
+				4FCA064C281C492B00B8ED9D /* QR */,
 				4F0F5714281BCC68006B6F04 /* Splash */,
 				4F0F5715281BCC7B006B6F04 /* Add */,
 				4F0F5717281BCC90006B6F04 /* Detail */,
@@ -183,6 +192,17 @@
 				4FCA063C281C108E00B8ED9D /* Badge.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA064C281C492B00B8ED9D /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA064D281C494B00B8ED9D /* QRScannerView.swift */,
+				4FCA064E281C494B00B8ED9D /* QRScannerViewController.swift */,
+				4FCA0651281C51B900B8ED9D /* QRCodeView.swift */,
+				4FCA0653281C51C700B8ED9D /* QRCodeViewController.swift */,
+			);
+			path = QR;
 			sourceTree = "<group>";
 		};
 		70FA5D18281BEA3500EEC2B7 /* Cell */ = {
@@ -331,8 +351,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCA0650281C494B00B8ED9D /* QRScannerViewController.swift in Sources */,
 				4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */,
+				4FCA0654281C51C700B8ED9D /* QRCodeViewController.swift in Sources */,
 				4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */,
+				4FCA0652281C51B900B8ED9D /* QRCodeView.swift in Sources */,
 				CF224147281BF0C400C77CC7 /* BadgeCircleCell.swift in Sources */,
 				70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */,
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
@@ -346,6 +369,7 @@
 				4F0F5720281BCD4C006B6F04 /* DetailViewController.swift in Sources */,
 				70DA4FC5281C364700D06419 /* AssessmentViewController.swift in Sources */,
 				4FAB7BEC281BBD0000864EC2 /* SceneDelegate.swift in Sources */,
+				4FCA064F281C494B00B8ED9D /* QRScannerView.swift in Sources */,
 				CF224140281BDC3400C77CC7 /* UIView+Extensions.swift in Sources */,
 				4F0F571C281BCD30006B6F04 /* SplashViewController.swift in Sources */,
 				CF22414B281BF85E00C77CC7 /* RecentBadgeCell.swift in Sources */,
@@ -488,7 +512,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -517,7 +541,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
