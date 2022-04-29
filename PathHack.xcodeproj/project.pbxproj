@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0F571C281BCD30006B6F04 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F571B281BCD30006B6F04 /* SplashViewController.swift */; };
+		4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F571D281BCD40006B6F04 /* AddViewController.swift */; };
+		4F0F5720281BCD4C006B6F04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F571F281BCD4C006B6F04 /* DetailViewController.swift */; };
+		4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5721281BCD57006B6F04 /* MainViewController.swift */; };
 		4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAB7BE9281BBD0000864EC2 /* AppDelegate.swift */; };
 		4FAB7BEC281BBD0000864EC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAB7BEB281BBD0000864EC2 /* SceneDelegate.swift */; };
 		4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAB7BED281BBD0000864EC2 /* ViewController.swift */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		30AFFF3FA6724C8BC9F6A478 /* Pods-PathHack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.release.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.release.xcconfig"; sourceTree = "<group>"; };
 		3DFB3004B7B15228C18901CF /* Pods_PathHack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PathHack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F0F571B281BCD30006B6F04 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		4F0F571D281BCD40006B6F04 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		4F0F571F281BCD4C006B6F04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4F0F5721281BCD57006B6F04 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4FAB7BE6281BBD0000864EC2 /* PathHack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathHack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAB7BE9281BBD0000864EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FAB7BEB281BBD0000864EC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +56,6 @@
 				E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */,
 				30AFFF3FA6724C8BC9F6A478 /* Pods-PathHack.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -58,6 +65,49 @@
 				3DFB3004B7B15228C18901CF /* Pods_PathHack.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F0F5714281BCC68006B6F04 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F571B281BCD30006B6F04 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		4F0F5715281BCC7B006B6F04 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F571D281BCD40006B6F04 /* AddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		4F0F5716281BCC81006B6F04 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F5721281BCD57006B6F04 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4F0F5717281BCC90006B6F04 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F571F281BCD4C006B6F04 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4F0F571A281BCCEB006B6F04 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4FAB7BF7281BBD0100864EC2 /* Info.plist */,
+				4FAB7BEF281BBD0000864EC2 /* Main.storyboard */,
+				4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */,
+				4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		4FAB7BDD281BBD0000864EC2 = {
@@ -84,10 +134,11 @@
 				4FAB7BE9281BBD0000864EC2 /* AppDelegate.swift */,
 				4FAB7BEB281BBD0000864EC2 /* SceneDelegate.swift */,
 				4FAB7BED281BBD0000864EC2 /* ViewController.swift */,
-				4FAB7BEF281BBD0000864EC2 /* Main.storyboard */,
-				4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */,
-				4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */,
-				4FAB7BF7281BBD0100864EC2 /* Info.plist */,
+				4F0F5714281BCC68006B6F04 /* Splash */,
+				4F0F5715281BCC7B006B6F04 /* Add */,
+				4F0F5717281BCC90006B6F04 /* Detail */,
+				4F0F5716281BCC81006B6F04 /* Main */,
+				4F0F571A281BCCEB006B6F04 /* Support */,
 			);
 			path = PathHack;
 			sourceTree = "<group>";
@@ -207,9 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */,
+				4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */,
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
 				4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */,
+				4F0F5720281BCD4C006B6F04 /* DetailViewController.swift in Sources */,
 				4FAB7BEC281BBD0000864EC2 /* SceneDelegate.swift in Sources */,
+				4F0F571C281BCD30006B6F04 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +414,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PathHack/Info.plist;
+				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -388,7 +443,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PathHack/Info.plist;
+				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
