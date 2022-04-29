@@ -111,4 +111,5 @@ var badgeData: [Badge] = [
     Badge(inType: .coding, currRecord: 398),
     Badge(inType: .cook, currRecord: 5),
     Badge(inType: .bicycle, currRecord: 300),
+    Badge(inType: .pathfinder, currRecord: 200)
 ]

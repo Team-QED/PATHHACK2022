@@ -90,6 +90,7 @@ extension QRScannerViewController: QRScannerViewDelegate {
             navi.dismiss(animated: true) {
                 navi.popToRootViewController(animated: true)
             }
+            badgeData[6].currRecord += 10
             
         } else {
             view.backgroundColor = UIColor.red
