@@ -34,7 +34,9 @@ class AssessmentViewController: UIViewController {
         
     }
     
-    private func setUI() {        
+    private func setUI() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         self.view.backgroundColor = .white
         
         self.baseView.clipsToBounds = true
