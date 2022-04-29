@@ -13,52 +13,58 @@ class DetailTableViewCell: UITableViewCell {
     
     private var badgeImageView = UIImageView()
     private var targetLabel = UILabel()
-    private var progressBaseView = UILabel()
-    private var progressView = UILabel()
+    private var progressBaseView = UIView()
+    private var progressView = UIView()
     private var currRecordLabel = UILabel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setConstraint()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setUI()
+        self.setConstraint()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setConstraint() {
+        self.contentView.addSubview(badgeImageView)
         badgeImageView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
             make.width.height.equalTo(64)
-            make.leading.equalToSuperview().offset(64)
+            make.leading.equalToSuperview().offset(48)
             make.centerY.equalToSuperview()
         }
-        self.addSubview(badgeImageView)
-        
+       
+        self.contentView.addSubview(targetLabel)
         targetLabel.snp.makeConstraints { make in
-            make.leading.equalTo(badgeImageView.snp.trailing)
+            make.leading.equalTo(badgeImageView.snp.trailing).offset(16)
             make.trailing.equalToSuperview().offset(64)
-            make.bottom.equalTo(self.badgeImageView.snp.centerY)
+            make.bottom.equalTo(self.badgeImageView.snp.centerY).offset(-4)
             make.height.equalTo(16)
         }
-        self.addSubview(targetLabel)
         
+        self.contentView.addSubview(progressBaseView)
         progressBaseView.snp.makeConstraints { make in
             make.top.equalTo(badgeImageView.snp.centerY)
             make.leading.equalTo(targetLabel.snp.leading)
             make.height.equalTo(12)
             make.trailing.equalToSuperview().offset(-64)
         }
-        self.addSubview(progressBaseView)
         
+        self.contentView.addSubview(progressView)
         progressView.snp.makeConstraints { make in
             make.top.leading.height.equalTo(progressBaseView)
-            make.width.equalTo(0)
         }
-        self.addSubview(progressView)
         
+        self.contentView.addSubview(currRecordLabel)
         currRecordLabel.snp.makeConstraints { make in
             make.top.equalTo(progressBaseView.snp.bottom).offset(8)
-            make.trailing.equalToSuperview().offset(64)
+            make.trailing.equalToSuperview().offset(-64)
             make.height.equalTo(16)
         }
-        self.addSubview(currRecordLabel)
     }
     
     private func setUI() {
@@ -71,13 +77,13 @@ class DetailTableViewCell: UITableViewCell {
         currRecordLabel.font = UIFont.systemFont(ofSize: 10, weight: .regular)
         currRecordLabel.textAlignment = .right
         
-        progressBaseView.backgroundColor = .brown
-        progressView.backgroundColor = .yellow
+        progressBaseView.backgroundColor = .appColor(.daisyColor)
+        progressView.backgroundColor = .appColor(.normalGreenColor)
         
     }
     
     private func updateProgressbar(percentage: Double) {
-        progressView.snp.remakeConstraints() { make in
+        progressView.snp.makeConstraints { make in
             make.width.equalTo(progressBaseView.snp.width).multipliedBy(percentage)
         }
     }
@@ -88,11 +94,5 @@ class DetailTableViewCell: UITableViewCell {
         currRecordLabel.text = badgeData.percentStr
         updateProgressbar(percentage: badgeData.percent)
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }
+

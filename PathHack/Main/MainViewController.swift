@@ -76,6 +76,11 @@ class MainViewController: UIViewController {
         $0.numberOfLines = 2
     }
     
+    private let secondCheckButton = UIButton().then {
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(didTapSecondCheckButton), for: .touchUpInside)
+    }
+    
     private let thirdView = UIView().then {
         $0.backgroundColor = .white
         $0.makeShadow(shadowColor: .gray)
@@ -218,6 +223,11 @@ class MainViewController: UIViewController {
             $0.trailing.equalTo(secondView).inset(margins)
         }
         
+        scrollView.addSubview(secondCheckButton)
+        secondCheckButton.snp.makeConstraints {
+            $0.top.leading.bottom.trailing.equalTo(secondCheckLabel)
+        }
+        
         scrollView.addSubview(thirdView)
         thirdView.snp.makeConstraints {
             $0.top.equalTo(secondView.snp.bottom).offset(margins)
@@ -277,11 +287,16 @@ class MainViewController: UIViewController {
             $0.bottom.equalTo(recentBadgeView).offset(-margins * 2)
         }
     }
+    
+    @objc private func didTapSecondCheckButton() {
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return badges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -301,9 +316,9 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == thirdBadgeCollectionView {
-            return 5
+            return badges.count
         } else {
-           return 5
+           return badges.count
         }
     }
     

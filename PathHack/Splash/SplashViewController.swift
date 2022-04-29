@@ -23,8 +23,17 @@ class SplashViewController: UIViewController {
     
     private func showMainVC() {
         let mainVC = MainViewController()
-        mainVC.modalPresentationStyle = .fullScreen
-        self.present(mainVC, animated: true)
+        let naiVC = UINavigationController(rootViewController: mainVC)
+        naiVC.modalPresentationStyle = .fullScreen
+        let app = UINavigationBarAppearance()
+        app.configureWithTransparentBackground()
+        app.shadowColor = .clear
+        app.backgroundColor = .clear
+        app.shadowImage = nil
+        app.backgroundImage = nil
+        naiVC.navigationController?.navigationBar.standardAppearance = app
+        
+        self.present(naiVC, animated: true)
     }
     
     private func attribute() {
