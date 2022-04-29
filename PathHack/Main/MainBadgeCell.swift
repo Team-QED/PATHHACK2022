@@ -16,7 +16,7 @@ class MainBadgeCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 14, weight: .bold)
     }
     private let badgeProgressBar = UIProgressView().then {
-        $0.progressTintColor = #colorLiteral(red: 0.4745098039, green: 0.7450980392, blue: 0.631372549, alpha: 1)
+        $0.progressTintColor = .appColor(.lightGreenColor)
     }
     private let percentLabel = UILabel().then {
         $0.textColor = .black
@@ -37,7 +37,7 @@ class MainBadgeCell: UITableViewCell {
     func setProperties(badge: Badge) {
         badgeLabel.text = badge.name
         badgeProgressBar.setProgress(Float(badge.percent * 100), animated: false)
-        percentLabel.text = "\(badge.percent)/100"
+        percentLabel.text = "\(badge.percent)%"
     }
     
     private func attribute() {
@@ -57,7 +57,7 @@ class MainBadgeCell: UITableViewCell {
         contentView.addSubview(percentLabel)
         percentLabel.snp.makeConstraints {
             $0.top.trailing.bottom.equalTo(contentView).inset(margins / 3)
-            $0.width.equalTo(50)
+            $0.width.equalTo(40)
         }
         
         contentView.addSubview(badgeProgressBar)
