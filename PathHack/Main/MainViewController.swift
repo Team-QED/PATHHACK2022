@@ -398,7 +398,8 @@ extension MainViewController: UIScrollViewDelegate {
 extension MainViewController {
     @objc private func tapAddButton() {
         // 오늘 하루 평가 버튼 클릭
-        
+        let vc = AddViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func tapSecondView() {
