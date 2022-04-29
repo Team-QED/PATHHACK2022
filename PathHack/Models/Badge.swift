@@ -106,9 +106,9 @@ struct Badge: Hashable {
 
 var badgeData: [Badge] = [
     Badge(inType: .book, currRecord: 500),
-    Badge(inType: .running, currRecord: 400),
+    Badge(inType: .running, currRecord: 200),
     Badge(inType: .movie, currRecord: 10),
-    Badge(inType: .coding, currRecord: 600),
+    Badge(inType: .coding, currRecord: 398),
     Badge(inType: .cook, currRecord: 5),
     Badge(inType: .bicycle, currRecord: 300),
 ]
