@@ -35,19 +35,6 @@ class MainViewController: UIViewController {
         $0.layer.cornerRadius = UIScreen.main.bounds.width * 1.3 / 2
         $0.clipsToBounds = true
     }
-    private let badgeView = UIView().then {
-        $0.backgroundColor = .appColor(.daisyColor)
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
-        $0.makeShadow(shadowColor: .gray)
-    }
-    private lazy var badgeTableView = UITableView().then {
-        $0.backgroundColor = .clear
-        $0.dataSource = self
-        $0.delegate = self
-        $0.separatorStyle = .none
-        $0.register(MainBadgeCell.self, forCellReuseIdentifier: MainBadgeCell.identifier)
-    }
     private lazy var addButton = UIButton(type: .system).then {
         $0.setTitle("오늘 하루 평가", for: .normal)
         $0.setTitleColor(.white, for: .normal)
@@ -101,14 +88,22 @@ class MainViewController: UIViewController {
         $0.backgroundColor = .white
         $0.makeShadow(shadowColor: .gray)
     }
+    private let todayImageView = UIImageView().then {
+        $0.image = UIImage(named: "reading_bg")
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.alpha = 0.8
+        $0.backgroundColor = .white
+    }
     private let todayTitleLabel = UILabel().then {
         $0.text = "오늘의 나는?"
-        $0.textColor = .black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.textColor = .white
+        $0.font = .systemFont(ofSize: 17, weight: .bold)
     }
     private let todayLabel = UILabel().then {
         $0.text = "당신은 독서왕!"
-        $0.textColor = .black
+        $0.textColor = .white
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 38, weight: .black)
     }
@@ -149,7 +144,6 @@ class MainViewController: UIViewController {
     }
 
     private func setupUI() {
-        let guide = view.safeAreaLayoutGuide
         let margins: CGFloat = 15
         
         view.addSubview(scrollView)
@@ -243,6 +237,11 @@ class MainViewController: UIViewController {
             $0.top.equalTo(thirdView.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(view).inset(margins)
             $0.height.equalTo(260)
+        }
+        
+        scrollView.addSubview(todayImageView)
+        todayImageView.snp.makeConstraints {
+            $0.edges.equalTo(todayView)
         }
         
         scrollView.addSubview(todayTitleLabel)
