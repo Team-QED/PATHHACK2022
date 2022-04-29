@@ -29,8 +29,9 @@ class MainViewController: UIViewController {
         $0.font = .systemFont(ofSize: 47, weight: .black)
         $0.numberOfLines = 2
     }
-    private let mainCircleBgView = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 1, green: 0.4941176471, blue: 0.4941176471, alpha: 1)
+    private let mainCircleBgView = UIImageView().then {
+        $0.image = UIImage(named: "profile")
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = UIScreen.main.bounds.width * 1.3 / 2
         $0.clipsToBounds = true
     }
@@ -51,7 +52,7 @@ class MainViewController: UIViewController {
         $0.setTitle("오늘 하루 평가", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-        $0.backgroundColor = #colorLiteral(red: 0.4039215686, green: 0.4862745098, blue: 0.7803921569, alpha: 1)
+        $0.backgroundColor = .appColor(.lightGreenColor)
         $0.layer.cornerRadius = 18
         $0.clipsToBounds = true
     }
@@ -90,11 +91,12 @@ class MainViewController: UIViewController {
         $0.minimumLineSpacing = 15
         $0.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
-    private lazy var thridBadgeCollectionVIew = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
+    private lazy var thirdBadgeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
         $0.dataSource = self
         $0.backgroundColor = .white
         $0.register(BadgeCircleCell.self, forCellWithReuseIdentifier: BadgeCircleCell.identifier)
     }
+    
     private let todayView = UIView().then {
         $0.backgroundColor = .white
         $0.makeShadow(shadowColor: .gray)
@@ -109,6 +111,27 @@ class MainViewController: UIViewController {
         $0.textColor = .black
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 38, weight: .black)
+    }
+    
+    private let recentBadgeView = UIView().then {
+        $0.backgroundColor = .white
+        $0.makeShadow(shadowColor: .gray)
+    }
+    private let recentBadgeTitleLabel = UILabel().then {
+        $0.text = "최근의 나는?"
+        $0.textColor = .black
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+    private let recentLayout = UICollectionViewFlowLayout().then {
+        $0.scrollDirection = .horizontal
+        $0.itemSize = CGSize(width: 160, height: 190)
+        $0.minimumLineSpacing = 15
+        $0.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    }
+    private lazy var recentBadgeCollectionVIew = UICollectionView(frame: .zero, collectionViewLayout: recentLayout).then {
+        $0.dataSource = self
+        $0.backgroundColor = .white
+        $0.register(RecentBadgeCell.self, forCellWithReuseIdentifier: RecentBadgeCell.identifier)
     }
     
     override func loadView() {
@@ -204,12 +227,13 @@ class MainViewController: UIViewController {
         
         scrollView.addSubview(thirdTitleLabel)
         thirdTitleLabel.snp.makeConstraints {
-            $0.top.leading.equalTo(thirdView).offset(margins)
+            $0.top.equalTo(thirdView).offset(margins * 2)
+            $0.leading.equalTo(thirdView).offset(margins)
         }
         
-        scrollView.addSubview(thridBadgeCollectionVIew)
-        thridBadgeCollectionVIew.snp.makeConstraints {
-            $0.top.equalTo(thirdTitleLabel.snp.bottom).offset(margins / 2)
+        scrollView.addSubview(thirdBadgeCollectionView)
+        thirdBadgeCollectionView.snp.makeConstraints {
+            $0.top.equalTo(thirdTitleLabel.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(thirdView)
             $0.bottom.equalTo(thirdView).offset(-margins)
         }
@@ -218,18 +242,39 @@ class MainViewController: UIViewController {
         todayView.snp.makeConstraints {
             $0.top.equalTo(thirdView.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(view).inset(margins)
-            $0.bottom.equalTo(scrollView).offset(-margins * 2)
-            $0.height.equalTo(300).priority(999)
+            $0.height.equalTo(260)
         }
         
         scrollView.addSubview(todayTitleLabel)
         todayTitleLabel.snp.makeConstraints {
-            $0.top.leading.equalTo(todayView).offset(margins)
+            $0.top.equalTo(todayView).offset(margins * 2)
+            $0.leading.equalTo(todayView).offset(margins)
         }
         
         scrollView.addSubview(todayLabel)
         todayLabel.snp.makeConstraints {
             $0.center.equalTo(todayView)
+        }
+        
+        scrollView.addSubview(recentBadgeView)
+        recentBadgeView.snp.makeConstraints {
+            $0.top.equalTo(todayView.snp.bottom).offset(margins)
+            $0.leading.trailing.equalTo(view).inset(margins)
+            $0.bottom.equalTo(scrollView).offset(-margins * 2)
+            $0.height.equalTo(300).priority(999)
+        }
+        
+        scrollView.addSubview(recentBadgeTitleLabel)
+        recentBadgeTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(recentBadgeView).offset(margins * 2)
+            $0.leading.equalTo(recentBadgeView).offset(margins)
+        }
+        
+        scrollView.addSubview(recentBadgeCollectionVIew)
+        recentBadgeCollectionVIew.snp.makeConstraints {
+            $0.top.equalTo(recentBadgeTitleLabel.snp.bottom).offset(margins / 2)
+            $0.leading.trailing.equalTo(recentBadgeView)
+            $0.bottom.equalTo(recentBadgeView).offset(-margins * 2)
         }
     }
 }
@@ -255,12 +300,25 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if collectionView == thirdBadgeCollectionView {
+            return 5
+        } else {
+           return 5
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BadgeCircleCell.identifier, for: indexPath) as! BadgeCircleCell
-        cell.setProperties(badge: badges[indexPath.item])
-        return cell
+        switch collectionView {
+        case thirdBadgeCollectionView:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BadgeCircleCell.identifier, for: indexPath) as! BadgeCircleCell
+            cell.setProperties(badge: badges[indexPath.item])
+            return cell
+        case recentBadgeCollectionVIew:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentBadgeCell.identifier, for: indexPath) as! RecentBadgeCell
+            cell.setProperties(badge: badges[indexPath.item])
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
 }
