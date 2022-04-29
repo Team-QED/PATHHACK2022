@@ -18,62 +18,109 @@ class MainViewController: UIViewController {
 //        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
     ]
     
-    private let scrollView = UIScrollView().then {
+    private lazy var scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
         $0.contentInsetAdjustmentBehavior = .never
+        $0.delegate = self
     }
     private let mainView = UIView()
+    private let mainLineView = UIView().then {
+        $0.backgroundColor = .appColor(.daisyColor)
+    }
     private let titleLabel = UILabel().then {
-        $0.text = "자전거"
-        $0.textColor = .black
-        $0.font = .systemFont(ofSize: 47, weight: .black)
-        $0.numberOfLines = 2
+        $0.text = "당신은\n\n런닝왕"
+        $0.textColor = .appColor(.darkGreenColor)
+        $0.font = .systemFont(ofSize: 36, weight: .bold)
+        $0.numberOfLines = 0
+        let attributedString = NSMutableAttributedString(string: $0.text ?? "")
+        attributedString.addAttribute(
+            NSAttributedString.Key.kern,
+            value: -0.35,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = -0.1
+        attributedString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        $0.attributedText = attributedString
+        $0.sizeToFit()
+    }
+    private let subtitleLabel = UILabel().then {
+        $0.text = """
+        어제의
+        당신은
+        러닝을
+        가장
+        완벽하게
+        하셨군요!
+        """
+        $0.textColor = .appColor(.darkGreenColor)
+        $0.font = .systemFont(ofSize: 20, weight: .regular)
+        $0.numberOfLines = 0
+        let attributedString = NSMutableAttributedString(string: $0.text ?? "")
+        attributedString.addAttribute(
+            NSAttributedString.Key.kern,
+            value: -0.35,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = -0.1
+        attributedString.addAttribute(
+            NSAttributedString.Key.paragraphStyle,
+            value: paragraphStyle,
+            range: NSRange(location: 0, length: attributedString.length)
+        )
+        $0.attributedText = attributedString
+        $0.sizeToFit()
     }
     private let mainCircleBgView = UIImageView().then {
         $0.image = UIImage(named: "profile")
         $0.contentMode = .scaleAspectFill
-        $0.layer.cornerRadius = UIScreen.main.bounds.width * 1.3 / 2
+        $0.layer.cornerRadius = 90
         $0.clipsToBounds = true
-    }
-    private let badgeView = UIView().then {
-        $0.backgroundColor = .appColor(.daisyColor)
-        $0.layer.cornerRadius = 8
-        $0.clipsToBounds = true
-        $0.makeShadow(shadowColor: .gray)
-    }
-    private lazy var badgeTableView = UITableView().then {
-        $0.backgroundColor = .clear
-        $0.dataSource = self
-        $0.delegate = self
-        $0.separatorStyle = .none
-        $0.register(MainBadgeCell.self, forCellReuseIdentifier: MainBadgeCell.identifier)
     }
     private lazy var addButton = UIButton(type: .system).then {
         $0.setTitle("오늘 하루 평가", for: .normal)
         $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        $0.titleLabel?.font = .mySystemFont(ofSize: 14, weight: .bold)
         $0.backgroundColor = .appColor(.lightGreenColor)
         $0.layer.cornerRadius = 18
         $0.clipsToBounds = true
+        $0.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
     }
     
     private let secondView = UIView().then {
-        $0.backgroundColor = .white
-        $0.makeShadow(shadowColor: .gray)
+        $0.backgroundColor = .appColor(.daisyColor)
     }
     
     private let profileImageView = UIImageView().then {
         $0.image = UIImage(named: "profile")
         $0.contentMode = .scaleAspectFill
-        $0.layer.cornerRadius = 50
+        $0.layer.cornerRadius = 65
         $0.clipsToBounds = true
+        $0.layer.zPosition = 1
     }
     
-    private let secondCheckLabel = UILabel().then {
-        $0.text = "아니쥬님의 역량\n확인 →"
+    private lazy var secondCheckLabel = UILabel().then {
+        $0.text = "아니쥬님\n당신의 능력을 확인해보세요."
         $0.textColor = .black
-        $0.font = .systemFont(ofSize: 18, weight: .medium)
+        $0.font = .mySystemFont(ofSize: 18, weight: .medium)
         $0.numberOfLines = 2
+        let attributedString = NSMutableAttributedString(string: $0.text!)
+        attributedString.addAttribute(
+            .font,
+            value: UIFont.mySystemFont(ofSize: 13, weight: .regular),
+            range: ($0.text! as NSString).range(of: "당신의 능력을 확인해보세요.")
+        )
+        $0.attributedText = attributedString
+    }
+    private let secondCheckSubLabel = UILabel().then {
+        $0.text = "→ 확인하러 가기"
+        $0.textColor = .black
+        $0.font = .mySystemFont(ofSize: 12, weight: .regular)
     }
     
     private let secondCheckButton = UIButton().then {
@@ -88,7 +135,7 @@ class MainViewController: UIViewController {
     private let thirdTitleLabel = UILabel().then {
         $0.text = "내가 얻은 뱃지"
         $0.textColor = .black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .mySystemFont(ofSize: 20, weight: .bold)
     }
     private let layout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -99,6 +146,7 @@ class MainViewController: UIViewController {
     private lazy var thirdBadgeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
         $0.dataSource = self
         $0.backgroundColor = .white
+        $0.showsHorizontalScrollIndicator = false
         $0.register(BadgeCircleCell.self, forCellWithReuseIdentifier: BadgeCircleCell.identifier)
     }
     
@@ -106,16 +154,23 @@ class MainViewController: UIViewController {
         $0.backgroundColor = .white
         $0.makeShadow(shadowColor: .gray)
     }
+    private let todayImageView = UIImageView().then {
+        $0.image = UIImage(named: "reading_bg")
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.alpha = 0.8
+    }
     private let todayTitleLabel = UILabel().then {
-        $0.text = "오늘의 나는?"
-        $0.textColor = .black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.text = "어제의 나는?"
+        $0.textColor = .white
+        $0.font = .mySystemFont(ofSize: 17, weight: .bold)
     }
     private let todayLabel = UILabel().then {
         $0.text = "당신은 독서왕!"
-        $0.textColor = .black
+        $0.textColor = .white
         $0.textAlignment = .center
-        $0.font = .systemFont(ofSize: 38, weight: .black)
+        $0.font = .mySystemFont(ofSize: 38, weight: .bold)
     }
     
     private let recentBadgeView = UIView().then {
@@ -125,7 +180,7 @@ class MainViewController: UIViewController {
     private let recentBadgeTitleLabel = UILabel().then {
         $0.text = "최근의 나는?"
         $0.textColor = .black
-        $0.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.font = .mySystemFont(ofSize: 20, weight: .bold)
     }
     private let recentLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
@@ -136,6 +191,7 @@ class MainViewController: UIViewController {
     private lazy var recentBadgeCollectionVIew = UICollectionView(frame: .zero, collectionViewLayout: recentLayout).then {
         $0.dataSource = self
         $0.backgroundColor = .white
+        $0.showsHorizontalScrollIndicator = false
         $0.register(RecentBadgeCell.self, forCellWithReuseIdentifier: RecentBadgeCell.identifier)
     }
     
@@ -145,16 +201,19 @@ class MainViewController: UIViewController {
         setupUI()
     }
     
-    private func startAnimation() {
-        
+    private func moveAnimate(_ y: CGFloat) {
+        let delay = 2.5
+        mainLineView.transform = CGAffineTransform(translationX: -y / delay, y: 0)
+        mainCircleBgView.transform = CGAffineTransform(translationX: -y / delay, y: 0)
+        titleLabel.transform = CGAffineTransform(translationX: -y / delay, y: 0)
+        subtitleLabel.transform = CGAffineTransform(translationX: -y / delay, y: 0)
     }
     
     private func attribute() {
         view.backgroundColor = .white
     }
-
+    
     private func setupUI() {
-        let guide = view.safeAreaLayoutGuide
         let margins: CGFloat = 15
         
         view.addSubview(scrollView)
@@ -164,56 +223,60 @@ class MainViewController: UIViewController {
         
         scrollView.addSubview(mainView)
         mainView.snp.makeConstraints {
-            $0.top.leading.equalTo(scrollView)
-            $0.width.equalTo(UIScreen.main.bounds.width)
+            $0.top.equalTo(scrollView)
+            $0.leading.trailing.equalTo(view)
+            $0.height.equalTo(UIScreen.main.bounds.height)
+        }
+        
+        mainView.addSubview(mainLineView)
+        mainLineView.snp.makeConstraints {
+            $0.top.equalTo(mainView)
+            $0.leading.equalToSuperview().offset(margins * 3)
+            $0.width.equalTo(60)
             $0.height.equalTo(UIScreen.main.bounds.height)
         }
         
         mainView.addSubview(mainCircleBgView)
         mainCircleBgView.snp.makeConstraints {
-            $0.top.leading.equalTo(mainView).offset(margins * 2)
-            $0.width.height.equalTo(UIScreen.main.bounds.width * 1.3)
+            $0.top.equalTo(mainView).inset(margins * 2 + UIApplication.shared.safeAreaTop)
+            $0.trailing.equalTo(mainView).inset(margins * 2)
+            $0.width.height.equalTo(180)
         }
         
         mainView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.trailing.equalTo(mainView).offset(margins * 10)
-            $0.leading.trailing.equalTo(mainView).offset(margins * 2)
+            $0.top.equalTo(mainCircleBgView.snp.bottom).offset(margins)
+            $0.trailing.equalTo(mainCircleBgView.snp.centerX)
+            $0.width.equalTo(40)
         }
         
-        mainView.addSubview(badgeView)
-        badgeView.snp.makeConstraints {
-            $0.top.equalTo(mainView.snp.centerY).offset(margins)
-            $0.leading.equalTo(mainView).offset(margins)
-            $0.width.equalTo(UIScreen.main.bounds.width / 1.5)
-            $0.height.equalTo(240)
-        }
-        
-        badgeView.addSubview(badgeTableView)
-        badgeTableView.snp.makeConstraints {
-            $0.top.bottom.equalTo(badgeView).inset(20)
-            $0.leading.trailing.equalTo(badgeView)
+        mainView.addSubview(subtitleLabel)
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(mainCircleBgView.snp.bottom).offset(margins)
+            $0.leading.equalTo(mainCircleBgView.snp.centerX)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-margins)
         }
         
         mainView.addSubview(addButton)
         addButton.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(mainView).inset(margins * 2)
-            $0.width.equalTo(120)
-            $0.height.equalTo(42)
-        }
-        
-        scrollView.addSubview(secondView)
-        secondView.snp.makeConstraints {
-            $0.top.equalTo(mainView.snp.bottom)
-            $0.leading.trailing.equalTo(view).inset(margins)
-            $0.height.equalTo(150)
+            $0.trailing.bottom.equalTo(mainView).inset(margins * 3)
+            $0.width.equalTo(140)
+            $0.height.equalTo(46)
         }
         
         scrollView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints {
-            $0.centerY.equalTo(secondView)
-            $0.leading.equalTo(secondView).offset(margins)
-            $0.width.height.equalTo(100)
+            $0.top.equalTo(mainView.snp.bottom).offset(margins)
+            $0.leading.equalTo(view).offset(margins)
+            $0.width.height.equalTo(130)
+        }
+        
+        scrollView.addSubview(secondView)
+        secondView.snp.makeConstraints {
+            $0.centerY.equalTo(profileImageView)
+            $0.leading.equalTo(profileImageView.snp.centerX)
+            $0.trailing.equalTo(view).offset(-margins)
+            $0.height.equalTo(120)
         }
         
         scrollView.addSubview(secondCheckLabel)
@@ -223,16 +286,11 @@ class MainViewController: UIViewController {
             $0.trailing.equalTo(secondView).inset(margins)
         }
         
-        scrollView.addSubview(secondCheckButton)
-        secondCheckButton.snp.makeConstraints {
-            $0.top.leading.bottom.trailing.equalTo(secondCheckLabel)
-        }
-        
         scrollView.addSubview(thirdView)
         thirdView.snp.makeConstraints {
-            $0.top.equalTo(secondView.snp.bottom).offset(margins)
+            $0.top.equalTo(secondView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
-            $0.height.equalTo(160)
+            $0.height.equalTo(190)
         }
         
         scrollView.addSubview(thirdTitleLabel)
@@ -245,14 +303,19 @@ class MainViewController: UIViewController {
         thirdBadgeCollectionView.snp.makeConstraints {
             $0.top.equalTo(thirdTitleLabel.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(thirdView)
-            $0.bottom.equalTo(thirdView).offset(-margins)
+            $0.bottom.equalTo(thirdView).offset(-margins * 2)
         }
         
         scrollView.addSubview(todayView)
         todayView.snp.makeConstraints {
-            $0.top.equalTo(thirdView.snp.bottom).offset(margins)
+            $0.top.equalTo(thirdView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
             $0.height.equalTo(260)
+        }
+        
+        scrollView.addSubview(todayImageView)
+        todayImageView.snp.makeConstraints {
+            $0.edges.equalTo(todayView)
         }
         
         scrollView.addSubview(todayTitleLabel)
@@ -268,7 +331,7 @@ class MainViewController: UIViewController {
         
         scrollView.addSubview(recentBadgeView)
         recentBadgeView.snp.makeConstraints {
-            $0.top.equalTo(todayView.snp.bottom).offset(margins)
+            $0.top.equalTo(todayView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
             $0.bottom.equalTo(scrollView).offset(-margins * 2)
             $0.height.equalTo(300).priority(999)
@@ -294,25 +357,6 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return badges.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MainBadgeCell.identifier, for: indexPath) as! MainBadgeCell
-        cell.setProperties(badge: badges[indexPath.row])
-        cell.selectionStyle = .none
-        return cell
-    }
-}
-
-extension MainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        40
-    }
-}
-
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == thirdBadgeCollectionView {
@@ -335,5 +379,19 @@ extension MainViewController: UICollectionViewDataSource {
         default:
             return UICollectionViewCell()
         }
+    }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("[Log] offset :", scrollView.contentOffset.y)
+        moveAnimate(scrollView.contentOffset.y)
+    }
+}
+
+// MARK: - Target
+extension MainViewController {
+    @objc private func tapAddButton() {
+        // 오늘 하루 평가 버튼 클릭
     }
 }

@@ -13,7 +13,6 @@ class BadgeCircleCell: UICollectionViewCell {
     
     private let badgeImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 40
         $0.clipsToBounds = true
     }
