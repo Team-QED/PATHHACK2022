@@ -25,8 +25,6 @@ final class AddViewController: UIViewController {
         self.setConstraint()
     }
     
-    
-    
     private func setUI() {
         self.collectionView.register(AddCollectionViewCell.self, forCellWithReuseIdentifier: AddCollectionViewCell.identifier)
         self.collectionView.dataSource = self
@@ -51,8 +49,6 @@ extension AddViewController: UICollectionViewDataSource {
         cell.setData(inType: Badge.InType.allCases[indexPath.row])
         return cell
     }
-    
-    
 }
 
 
@@ -70,7 +66,7 @@ extension AddViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 32) / 3
+        let width = floor((collectionView.frame.width - 32) / 3)
         return CGSize(width: width, height: width)
     }
 }
