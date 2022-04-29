@@ -34,7 +34,7 @@ class AssessmentViewController: UIViewController {
         
     }
     
-    private func setUI() {
+    private func setUI() {        
         self.view.backgroundColor = .white
         
         self.baseView.clipsToBounds = true
@@ -42,7 +42,7 @@ class AssessmentViewController: UIViewController {
         self.baseView.backgroundColor = .appColor(.daisyColor)
         self.view.addSubview(self.baseView)
         
-        self.confirmLabel.text = "우쭈쭈쭈쭈"
+        self.confirmLabel.text = "오늘 열심히 코딩 하셨나요?"
         self.confirmLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         self.confirmLabel.textAlignment = .left
         self.baseView.addSubview(self.confirmLabel)
@@ -92,7 +92,8 @@ class AssessmentViewController: UIViewController {
     }
     
     @objc private func didTapSendButton() {
-        print("넘어가가")
+        badgeData[3].currRecord += 8
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }

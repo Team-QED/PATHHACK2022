@@ -47,6 +47,13 @@ class SplashViewController: UIViewController {
     }
     
     private func showMainVC() {
+        let naviBar = UINavigationBar.appearance()
+        naviBar.tintColor = .black
+        naviBar.backItem?.title = "  "
+        
+        let barButton = UIBarButtonItem(title: " ", style: .done, target: nil, action: nil)
+        barButton.tintColor = .black
+
         let mainVC = MainViewController()
         let naiVC = UINavigationController(rootViewController: mainVC)
         naiVC.modalPresentationStyle = .fullScreen
@@ -57,6 +64,7 @@ class SplashViewController: UIViewController {
         app.shadowImage = nil
         app.backgroundImage = nil
         naiVC.navigationController?.navigationBar.standardAppearance = app
+        mainVC.navigationItem.backBarButtonItem = barButton
         
         self.present(naiVC, animated: true)
     }
@@ -91,5 +99,9 @@ class SplashViewController: UIViewController {
         subLabel.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview().inset(12)
         }
+    }
+    
+    @objc private func backAction() {
+        navigationController?.popViewController(animated: true)
     }
 }

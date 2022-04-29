@@ -94,7 +94,7 @@ struct Badge: Hashable {
 }
 
 
-let badgeData: [Badge] = [
+var badgeData: [Badge] = [
     Badge(inType: .book, level: .gold, currRecord: 500),
     Badge(inType: .running, level: .silver, currRecord: 300),
     Badge(inType: .movie, level: .bronze, currRecord: 10),
