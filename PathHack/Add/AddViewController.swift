@@ -13,7 +13,7 @@ final class AddViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
@@ -49,24 +49,29 @@ extension AddViewController: UICollectionViewDataSource {
         cell.setData(inType: Badge.InType.allCases[indexPath.row])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = AssessmentViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
 }
 
 
 extension AddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 40, left: 8, bottom: 40, right: 8)
+        UIEdgeInsets(top: 40, left: 12, bottom: 40, right: 12)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        8
+        12
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        8
+        12
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = floor((collectionView.frame.width - 32) / 3)
+        let width = floor((collectionView.frame.width - 48) / 3)
         return CGSize(width: width, height: width)
     }
 }
