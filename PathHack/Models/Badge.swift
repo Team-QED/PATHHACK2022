@@ -10,4 +10,5 @@ import Foundation
 struct Badge: Hashable {
     let name: String
     let percent: Int
+    let imageName: String
 }

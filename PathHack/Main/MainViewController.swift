@@ -11,11 +11,11 @@ import SnapKit
 class MainViewController: UIViewController {
     
     private let badges = [
-        Badge(name: "뱃지1", percent: 55),
-        Badge(name: "뱃지2", percent: 5),
-        Badge(name: "뱃지3", percent: 24),
-        Badge(name: "뱃지4", percent: 60),
-        Badge(name: "뱃지5", percent: 40),
+        Badge(name: "뱃지1", percent: 55, imageName: "profile"),
+        Badge(name: "뱃지2", percent: 5, imageName: "profile"),
+        Badge(name: "뱃지3", percent: 24, imageName: "profile"),
+        Badge(name: "뱃지4", percent: 60, imageName: "profile"),
+        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
     ]
     
     private let scrollView = UIScrollView().then {
@@ -35,10 +35,10 @@ class MainViewController: UIViewController {
         $0.clipsToBounds = true
     }
     private let badgeView = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 0.7294117647, green: 0.831372549, blue: 0.8862745098, alpha: 1)
+        $0.backgroundColor = .appColor(.daisyColor)
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
-        $0.makeShadow(shadowColor: .lightGray)
+        $0.makeShadow(shadowColor: .gray)
     }
     private lazy var badgeTableView = UITableView().then {
         $0.backgroundColor = .clear
@@ -58,7 +58,7 @@ class MainViewController: UIViewController {
     
     private let secondView = UIView().then {
         $0.backgroundColor = .white
-        $0.makeShadow(shadowColor: .lightGray)
+        $0.makeShadow(shadowColor: .gray)
     }
     
     private let profileImageView = UIImageView().then {
@@ -77,11 +77,38 @@ class MainViewController: UIViewController {
     
     private let thirdView = UIView().then {
         $0.backgroundColor = .white
-        $0.makeShadow(shadowColor: .lightGray)
+        $0.makeShadow(shadowColor: .gray)
     }
     private let thirdTitleLabel = UILabel().then {
         $0.text = "내가 얻은 뱃지"
+        $0.textColor = .black
         $0.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+    private let layout = UICollectionViewFlowLayout().then {
+        $0.scrollDirection = .horizontal
+        $0.itemSize = CGSize(width: 80, height: 80)
+        $0.minimumLineSpacing = 15
+        $0.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    }
+    private lazy var thridBadgeCollectionVIew = UICollectionView(frame: .zero, collectionViewLayout: layout).then {
+        $0.dataSource = self
+        $0.backgroundColor = .white
+        $0.register(BadgeCircleCell.self, forCellWithReuseIdentifier: BadgeCircleCell.identifier)
+    }
+    private let todayView = UIView().then {
+        $0.backgroundColor = .white
+        $0.makeShadow(shadowColor: .gray)
+    }
+    private let todayTitleLabel = UILabel().then {
+        $0.text = "오늘의 나는?"
+        $0.textColor = .black
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+    private let todayLabel = UILabel().then {
+        $0.text = "당신은 독서왕!"
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 38, weight: .black)
     }
     
     override func loadView() {
@@ -172,8 +199,37 @@ class MainViewController: UIViewController {
         thirdView.snp.makeConstraints {
             $0.top.equalTo(secondView.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(view).inset(margins)
+            $0.height.equalTo(160)
+        }
+        
+        scrollView.addSubview(thirdTitleLabel)
+        thirdTitleLabel.snp.makeConstraints {
+            $0.top.leading.equalTo(thirdView).offset(margins)
+        }
+        
+        scrollView.addSubview(thridBadgeCollectionVIew)
+        thridBadgeCollectionVIew.snp.makeConstraints {
+            $0.top.equalTo(thirdTitleLabel.snp.bottom).offset(margins / 2)
+            $0.leading.trailing.equalTo(thirdView)
+            $0.bottom.equalTo(thirdView).offset(-margins)
+        }
+        
+        scrollView.addSubview(todayView)
+        todayView.snp.makeConstraints {
+            $0.top.equalTo(thirdView.snp.bottom).offset(margins)
+            $0.leading.trailing.equalTo(view).inset(margins)
             $0.bottom.equalTo(scrollView).offset(-margins * 2)
-            $0.height.equalTo(300)
+            $0.height.equalTo(300).priority(999)
+        }
+        
+        scrollView.addSubview(todayTitleLabel)
+        todayTitleLabel.snp.makeConstraints {
+            $0.top.leading.equalTo(todayView).offset(margins)
+        }
+        
+        scrollView.addSubview(todayLabel)
+        todayLabel.snp.makeConstraints {
+            $0.center.equalTo(todayView)
         }
     }
 }
@@ -194,5 +250,17 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         40
+    }
+}
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BadgeCircleCell.identifier, for: indexPath) as! BadgeCircleCell
+        cell.setProperties(badge: badges[indexPath.item])
+        return cell
     }
 }
