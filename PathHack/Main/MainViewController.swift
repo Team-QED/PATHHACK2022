@@ -10,12 +10,12 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    private let badges = [
-        Badge(name: "뱃지1", percent: 55, imageName: "profile"),
-        Badge(name: "뱃지2", percent: 5, imageName: "profile"),
-        Badge(name: "뱃지3", percent: 24, imageName: "profile"),
-        Badge(name: "뱃지4", percent: 60, imageName: "profile"),
-        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
+    private let badges: [Badge] = [
+//        Badge(name: "뱃지1", level: <#T##Badge.Level#>, currRecord: <#T##Double#>,  percent: 55, imageName: "profile"),
+//        Badge(name: "뱃지2", percent: 5, imageName: "profile"),
+//        Badge(name: "뱃지3", percent: 24, imageName: "profile"),
+//        Badge(name: "뱃지4", percent: 60, imageName: "profile"),
+//        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
     ]
     
     private let scrollView = UIScrollView().then {

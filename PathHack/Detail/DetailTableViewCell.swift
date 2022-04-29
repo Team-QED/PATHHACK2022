@@ -59,7 +59,6 @@ class DetailTableViewCell: UITableViewCell {
             make.height.equalTo(16)
         }
         self.addSubview(currRecordLabel)
-        
     }
     
     private func setUI() {
@@ -79,16 +78,17 @@ class DetailTableViewCell: UITableViewCell {
     
     private func updateProgressbar(percentage: Double) {
         progressView.snp.remakeConstraints() { make in
-            make.width.equalToSuperview().multipliedBy(percentage)
+            make.width.equalTo(progressBaseView.snp.width).multipliedBy(percentage)
         }
     }
     
     func drawCell(badgeData: Badge) {
         badgeImageView.image = UIImage(named: badgeData.imageName)
         targetLabel.text = badgeData.name
-        currRecordLabel.text = "0 / 100"
+        currRecordLabel.text = String(Int(badgeData.currRecord)) + " / " + String(Int(badgeData.level.rawValue))
         
-        updateProgressbar(percentage: badgeData.percent)
+        let percent = badgeData.percent > 1 ? 1 : badgeData.percent
+        updateProgressbar(percentage: percent)
         
     }
     
