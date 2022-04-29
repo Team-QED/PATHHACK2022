@@ -30,6 +30,8 @@
 		CF42330A281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF423307281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf */; };
 		CF4FA44F281C21EA00F9EA3E /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA44E281C21EA00F9EA3E /* UIApplication+Extensions.swift */; };
 		CF4FA452281C37EE00F9EA3E /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA451281C37EE00F9EA3E /* UICollectionView+Extensions.swift */; };
+		CF4FA454281C3C7F00F9EA3E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA453281C3C7F00F9EA3E /* Record.swift */; };
+		CF4FA456281C421600F9EA3E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA455281C421600F9EA3E /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		CF423307281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		CF4FA44E281C21EA00F9EA3E /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		CF4FA451281C37EE00F9EA3E /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		CF4FA453281C3C7F00F9EA3E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		CF4FA455281C421600F9EA3E /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.debug.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				4FCA063C281C108E00B8ED9D /* Badge.swift */,
+				CF4FA453281C3C7F00F9EA3E /* Record.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		CF22413E281BDBEE00C77CC7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF4FA455281C421600F9EA3E /* Date+Extensions.swift */,
 				CF22413F281BDC3400C77CC7 /* UIView+Extensions.swift */,
 				CF224148281BF66100C77CC7 /* UIColor+Extensions.swift */,
 				CF423303281C17E80088A33B /* UIFont+Extensions.swift */,
@@ -330,12 +336,14 @@
 			files = (
 				4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */,
 				CF4FA452281C37EE00F9EA3E /* UICollectionView+Extensions.swift in Sources */,
+				CF4FA454281C3C7F00F9EA3E /* Record.swift in Sources */,
 				4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */,
 				CF224147281BF0C400C77CC7 /* BadgeCircleCell.swift in Sources */,
 				70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */,
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
 				CF4FA44F281C21EA00F9EA3E /* UIApplication+Extensions.swift in Sources */,
 				4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */,
+				CF4FA456281C421600F9EA3E /* Date+Extensions.swift in Sources */,
 				4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */,
 				CF423304281C17E80088A33B /* UIFont+Extensions.swift in Sources */,
 				4FCA063D281C108E00B8ED9D /* Badge.swift in Sources */,
