@@ -26,6 +26,16 @@ class PDFViewer: UIViewController {
     private let documentImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
+    private let bottomView = UIView().then {
+        $0.backgroundColor = .black
+        $0.alpha = 0.9
+    }
+    private lazy var downloadButton = UIButton().then {
+        $0.setTitle("다운로드", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = .mySystemFont(ofSize: 16, weight: .medium)
+        $0.addTarget(self, action: #selector(download), for: .touchUpInside)
+    }
     
     // MARK: - Methods
     
@@ -100,6 +110,18 @@ class PDFViewer: UIViewController {
             $0.top.trailing.equalTo(view.safeAreaLayoutGuide).inset(15)
             $0.width.height.equalTo(30)
         }
+        
+        view.addSubview(bottomView)
+        bottomView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        bottomView.addSubview(downloadButton)
+        downloadButton.snp.makeConstraints {
+            $0.top.equalTo(bottomView).offset(8)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -111,6 +133,13 @@ private extension PDFViewer {
     
     @objc private func close() {
         self.dismiss(animated: true)
+    }
+    
+    @objc private func download() {
+        let image = documentImageView.image!
+        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true)
     }
 }
 

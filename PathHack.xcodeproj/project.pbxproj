@@ -39,8 +39,8 @@
 		CF4FA454281C3C7F00F9EA3E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA453281C3C7F00F9EA3E /* Record.swift */; };
 		CF4FA456281C421600F9EA3E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA455281C421600F9EA3E /* Date+Extensions.swift */; };
 		CF4FA459281C4D5F00F9EA3E /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA458281C4D5F00F9EA3E /* CertificationViewController.swift */; };
-		CF4FA45B281C538A00F9EA3E /* CertificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA45A281C538A00F9EA3E /* CertificationCell.swift */; };
 		CF4FA45E281C5BB600F9EA3E /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA45D281C5BB600F9EA3E /* PDFViewer.swift */; };
+		CF4FA460281C642A00F9EA3E /* TalentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA45F281C642A00F9EA3E /* TalentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,8 +79,8 @@
 		CF4FA453281C3C7F00F9EA3E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		CF4FA455281C421600F9EA3E /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		CF4FA458281C4D5F00F9EA3E /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
-		CF4FA45A281C538A00F9EA3E /* CertificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationCell.swift; sourceTree = "<group>"; };
 		CF4FA45D281C5BB600F9EA3E /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
+		CF4FA45F281C642A00F9EA3E /* TalentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentCell.swift; sourceTree = "<group>"; };
 		E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.debug.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +138,7 @@
 				4F0F5721281BCD57006B6F04 /* MainViewController.swift */,
 				CF224146281BF0C400C77CC7 /* BadgeCircleCell.swift */,
 				CF22414A281BF85E00C77CC7 /* RecentBadgeCell.swift */,
-				CF4FA45A281C538A00F9EA3E /* CertificationCell.swift */,
+				CF4FA45F281C642A00F9EA3E /* TalentCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -401,7 +401,6 @@
 				4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */,
 				CF4FA456281C421600F9EA3E /* Date+Extensions.swift in Sources */,
 				4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */,
-				CF4FA45B281C538A00F9EA3E /* CertificationCell.swift in Sources */,
 				CF423304281C17E80088A33B /* UIFont+Extensions.swift in Sources */,
 				4FCA063D281C108E00B8ED9D /* Badge.swift in Sources */,
 				CF224149281BF66100C77CC7 /* UIColor+Extensions.swift in Sources */,
@@ -413,6 +412,7 @@
 				4F0F571C281BCD30006B6F04 /* SplashViewController.swift in Sources */,
 				CF4FA45E281C5BB600F9EA3E /* PDFViewer.swift in Sources */,
 				CF22414B281BF85E00C77CC7 /* RecentBadgeCell.swift in Sources */,
+				CF4FA460281C642A00F9EA3E /* TalentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +552,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -581,7 +581,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
