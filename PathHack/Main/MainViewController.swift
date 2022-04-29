@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    private let talents: [TalentType] = [.developer, .delivery, .workout]
+    
     private var currentPage = 0 {
         didSet {
             pageControl.currentPage = currentPage
@@ -55,7 +57,7 @@ class MainViewController: UIViewController {
         하셨군요!
         """
         $0.textColor = .appColor(.darkGreenColor)
-        $0.font = .systemFont(ofSize: 20, weight: .regular)
+        $0.font = .systemFont(ofSize: 18, weight: .bold)
         $0.numberOfLines = 0
         let attributedString = NSMutableAttributedString(string: $0.text ?? "")
         attributedString.addAttribute(
@@ -84,9 +86,9 @@ class MainViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = .mySystemFont(ofSize: 14, weight: .bold)
         $0.backgroundColor = .appColor(.lightGreenColor)
-        $0.layer.cornerRadius = 18
         $0.clipsToBounds = true
         $0.addTarget(self, action: #selector(tapAddButton), for: .touchUpInside)
+        $0.makeShadow(shadowColor: .gray)
     }
     
     private lazy var secondView = UIView().then {
@@ -160,12 +162,14 @@ class MainViewController: UIViewController {
         $0.text = "어제의 나는?"
         $0.textColor = .white
         $0.font = .mySystemFont(ofSize: 17, weight: .bold)
+        $0.makeShadow(shadowColor: .gray)
     }
     private let todayLabel = UILabel().then {
         $0.text = "당신은 독서왕!"
         $0.textColor = .white
         $0.textAlignment = .center
         $0.font = .mySystemFont(ofSize: 38, weight: .bold)
+        $0.makeShadow(shadowColor: .gray)
     }
     
     private let recentBadgeView = UIView().then {
@@ -205,9 +209,9 @@ class MainViewController: UIViewController {
         $0.isPagingEnabled = true
         $0.register(TalentCell.self, forCellWithReuseIdentifier: TalentCell.identifier)
     }
-    private let pageControl = UIPageControl().then {
+    private lazy var pageControl = UIPageControl().then {
         $0.currentPage = 0
-        $0.numberOfPages = 5
+        $0.numberOfPages = talents.count
     }
     
     override func viewWillLayoutSubviews() {
@@ -267,8 +271,8 @@ class MainViewController: UIViewController {
         
         mainView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(mainCircleBgView.snp.bottom).offset(margins)
-            $0.trailing.equalTo(mainCircleBgView.snp.centerX)
+            $0.top.equalTo(mainCircleBgView.snp.bottom).offset(margins - 2)
+            $0.trailing.equalTo(mainCircleBgView.snp.centerX).offset(-10)
             $0.width.equalTo(40)
         }
         
@@ -399,7 +403,7 @@ extension MainViewController: UICollectionViewDataSource {
         } else if collectionView == recentBadgeCollectionView {
             return recordData.count
         } else {
-            return 5
+            return talents.count
         }
     }
     
@@ -415,7 +419,7 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         case talentCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TalentCell.identifier, for: indexPath) as! TalentCell
-            //            cell.setProperties(record: recordData[indexPath.item])
+            cell.setProperties(talentType: talents[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -432,7 +436,7 @@ extension MainViewController: UICollectionViewDelegate, UIScrollViewDelegate {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if scrollView == talentCollectionView {
-            let currentPage = Int(targetContentOffset.pointee.x / view.frame.width) + 1
+            let currentPage = Int(round(targetContentOffset.pointee.x / view.frame.width))
             self.currentPage = currentPage
         }
     }

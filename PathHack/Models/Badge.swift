@@ -13,10 +13,12 @@ struct Badge: Hashable {
     var currRecord: Int
     
     var record: Int {
-        switch self.currRecord > 100 {
-        case true:
-            return level.sum - currRecord
-        case false:
+        switch self.level {
+        case .gold:
+            return currRecord - 400
+        case .silver:
+            return currRecord - 100
+        case.bronze:
             return currRecord
         }
     }
@@ -94,9 +96,9 @@ struct Badge: Hashable {
 
 let badgeData: [Badge] = [
     Badge(inType: .book, level: .gold, currRecord: 500),
-    Badge(inType: .running, level: .silver, currRecord: 400),
+    Badge(inType: .running, level: .silver, currRecord: 300),
     Badge(inType: .movie, level: .bronze, currRecord: 10),
-    Badge(inType: .coding, level: .bronze, currRecord: 5),
+    Badge(inType: .coding, level: .gold, currRecord: 600),
     Badge(inType: .cook, level: .bronze, currRecord: 5),
     Badge(inType: .bicycle, level: .silver, currRecord: 300),
 ]
