@@ -35,7 +35,7 @@ extension QRScannerViewController {
         view.backgroundColor = UIColor.appColor(.darkGreenColor)
         
         titleLabel.textAlignment = .center
-        titleLabel.text = "패스파인다의 QR 코드를 찍어주세요"
+        titleLabel.text = "패스파인더의 QR 코드를 찍어주세요"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.mySystemFont(ofSize: 18, weight: .bold)
         
@@ -86,7 +86,11 @@ extension QRScannerViewController {
 extension QRScannerViewController: QRScannerViewDelegate {
     func qrScanningSucceededWithCode(_ str: String) {
         if str == "pathfinder" {
-            self.dismiss(animated: true)
+            guard let navi = presentingViewController as? UINavigationController else { return }
+            navi.dismiss(animated: true) {
+                navi.popToRootViewController(animated: true)
+            }
+            
         } else {
             view.backgroundColor = UIColor.red
             UIView.animate(
