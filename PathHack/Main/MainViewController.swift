@@ -10,12 +10,12 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    private let badges = [
-        Badge(name: "뱃지1", percent: 55, imageName: "book_gold"),
-        Badge(name: "뱃지2", percent: 5, imageName: "coding_bronze"),
-        Badge(name: "뱃지3", percent: 24, imageName: "cook_bronze"),
-        Badge(name: "뱃지4", percent: 60, imageName: "movie_silver"),
-        Badge(name: "뱃지5", percent: 40, imageName: "running_silver"),
+    private let badges: [Badge] = [
+//        Badge(name: "뱃지1", level: <#T##Badge.Level#>, currRecord: <#T##Double#>,  percent: 55, imageName: "profile"),
+//        Badge(name: "뱃지2", percent: 5, imageName: "profile"),
+//        Badge(name: "뱃지3", percent: 24, imageName: "profile"),
+//        Badge(name: "뱃지4", percent: 60, imageName: "profile"),
+//        Badge(name: "뱃지5", percent: 40, imageName: "profile"),
     ]
     
     private lazy var scrollView = UIScrollView().then {
@@ -121,6 +121,11 @@ class MainViewController: UIViewController {
         $0.text = "→ 확인하러 가기"
         $0.textColor = .black
         $0.font = .mySystemFont(ofSize: 12, weight: .regular)
+    }
+    
+    private let secondCheckButton = UIButton().then {
+        $0.setTitle("", for: .normal)
+        $0.addTarget(self, action: #selector(didTapSecondCheckButton), for: .touchUpInside)
     }
     
     private let thirdView = UIView().then {
@@ -281,11 +286,6 @@ class MainViewController: UIViewController {
             $0.trailing.equalTo(secondView).inset(margins)
         }
         
-        scrollView.addSubview(secondCheckSubLabel)
-        secondCheckSubLabel.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(secondView).inset(margins)
-        }
-        
         scrollView.addSubview(thirdView)
         thirdView.snp.makeConstraints {
             $0.top.equalTo(secondView.snp.bottom).offset(margins * 2)
@@ -350,14 +350,19 @@ class MainViewController: UIViewController {
             $0.bottom.equalTo(recentBadgeView).offset(-margins * 2)
         }
     }
+    
+    @objc private func didTapSecondCheckButton() {
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == thirdBadgeCollectionView {
-            return 5
+            return badges.count
         } else {
-            return 5
+           return badges.count
         }
     }
     
