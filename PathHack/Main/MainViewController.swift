@@ -9,7 +9,13 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
-    private lazy var scrollView = UIScrollView().then {
+    private var currentPage = 0 {
+        didSet {
+            pageControl.currentPage = currentPage
+        }
+    }
+    
+    private lazy var mainScrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
         $0.contentInsetAdjustmentBehavior = .never
         $0.delegate = self
@@ -177,11 +183,31 @@ class MainViewController: UIViewController {
         $0.minimumLineSpacing = 15
         $0.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     }
-    private lazy var recentBadgeCollectionVIew = UICollectionView(frame: .zero, collectionViewLayout: recentLayout).then {
+    private lazy var recentBadgeCollectionView = UICollectionView(frame: .zero, collectionViewLayout: recentLayout).then {
         $0.dataSource = self
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.register(RecentBadgeCell.self, forCellWithReuseIdentifier: RecentBadgeCell.identifier)
+    }
+    
+    private let talentLayout = UICollectionViewFlowLayout().then {
+        $0.scrollDirection = .horizontal
+        $0.itemSize = CGSize(width: UIScreen.main.bounds.width - 30, height: 260)
+        $0.minimumLineSpacing = 0
+        $0.minimumInteritemSpacing = 0
+        $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    private lazy var talentCollectionView = UICollectionView(frame: .zero, collectionViewLayout: talentLayout).then {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .white
+        $0.showsHorizontalScrollIndicator = false
+        $0.isPagingEnabled = true
+        $0.register(TalentCell.self, forCellWithReuseIdentifier: TalentCell.identifier)
+    }
+    private let pageControl = UIPageControl().then {
+        $0.currentPage = 0
+        $0.numberOfPages = 5
     }
     
     override func viewWillLayoutSubviews() {
@@ -212,14 +238,14 @@ class MainViewController: UIViewController {
     private func setupUI() {
         let margins: CGFloat = 15
         
-        view.addSubview(scrollView)
-        scrollView.snp.makeConstraints {
+        view.addSubview(mainScrollView)
+        mainScrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        scrollView.addSubview(mainView)
+        mainScrollView.addSubview(mainView)
         mainView.snp.makeConstraints {
-            $0.top.equalTo(scrollView)
+            $0.top.equalTo(mainScrollView)
             $0.leading.trailing.equalTo(view)
             $0.height.equalTo(UIScreen.main.bounds.height)
         }
@@ -260,14 +286,14 @@ class MainViewController: UIViewController {
             $0.height.equalTo(46)
         }
         
-        scrollView.addSubview(profileImageView)
+        mainScrollView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints {
             $0.top.equalTo(mainView.snp.bottom).offset(margins)
             $0.leading.equalTo(view).offset(margins)
             $0.width.height.equalTo(130)
         }
         
-        scrollView.addSubview(secondView)
+        mainScrollView.addSubview(secondView)
         secondView.snp.makeConstraints {
             $0.centerY.equalTo(profileImageView)
             $0.leading.equalTo(profileImageView.snp.centerX)
@@ -275,80 +301,93 @@ class MainViewController: UIViewController {
             $0.height.equalTo(120)
         }
         
-        scrollView.addSubview(secondCheckLabel)
+        mainScrollView.addSubview(secondCheckLabel)
         secondCheckLabel.snp.makeConstraints {
             $0.centerY.equalTo(secondView)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(margins)
             $0.trailing.equalTo(secondView).inset(margins)
         }
         
-        scrollView.addSubview(secondCheckSubLabel)
+        mainScrollView.addSubview(secondCheckSubLabel)
         secondCheckSubLabel.snp.makeConstraints {
             $0.trailing.bottom.equalTo(secondView).inset(margins)
         }
         
-        scrollView.addSubview(thirdView)
+        mainScrollView.addSubview(thirdView)
         thirdView.snp.makeConstraints {
             $0.top.equalTo(secondView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
             $0.height.equalTo(190)
         }
         
-        scrollView.addSubview(thirdTitleLabel)
+        mainScrollView.addSubview(thirdTitleLabel)
         thirdTitleLabel.snp.makeConstraints {
             $0.top.equalTo(thirdView).offset(margins * 2)
             $0.leading.equalTo(thirdView).offset(margins)
         }
         
-        scrollView.addSubview(thirdBadgeCollectionView)
+        mainScrollView.addSubview(thirdBadgeCollectionView)
         thirdBadgeCollectionView.snp.makeConstraints {
             $0.top.equalTo(thirdTitleLabel.snp.bottom).offset(margins)
             $0.leading.trailing.equalTo(thirdView)
             $0.bottom.equalTo(thirdView).offset(-margins * 2)
         }
         
-        scrollView.addSubview(todayView)
+        mainScrollView.addSubview(todayView)
         todayView.snp.makeConstraints {
             $0.top.equalTo(thirdView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
             $0.height.equalTo(260)
         }
         
-        scrollView.addSubview(todayImageView)
+        mainScrollView.addSubview(todayImageView)
         todayImageView.snp.makeConstraints {
             $0.edges.equalTo(todayView)
         }
         
-        scrollView.addSubview(todayTitleLabel)
+        mainScrollView.addSubview(todayTitleLabel)
         todayTitleLabel.snp.makeConstraints {
             $0.top.equalTo(todayView).offset(margins * 2)
             $0.leading.equalTo(todayView).offset(margins)
         }
         
-        scrollView.addSubview(todayLabel)
+        mainScrollView.addSubview(todayLabel)
         todayLabel.snp.makeConstraints {
             $0.center.equalTo(todayView)
         }
         
-        scrollView.addSubview(recentBadgeView)
+        mainScrollView.addSubview(recentBadgeView)
         recentBadgeView.snp.makeConstraints {
             $0.top.equalTo(todayView.snp.bottom).offset(margins * 2)
             $0.leading.trailing.equalTo(view).inset(margins)
-            $0.bottom.equalTo(scrollView).offset(-margins * 2)
-            $0.height.equalTo(300).priority(999)
+            $0.height.equalTo(300)
         }
         
-        scrollView.addSubview(recentBadgeTitleLabel)
+        mainScrollView.addSubview(recentBadgeTitleLabel)
         recentBadgeTitleLabel.snp.makeConstraints {
             $0.top.equalTo(recentBadgeView).offset(margins * 2)
             $0.leading.equalTo(recentBadgeView).offset(margins)
         }
         
-        scrollView.addSubview(recentBadgeCollectionVIew)
-        recentBadgeCollectionVIew.snp.makeConstraints {
+        mainScrollView.addSubview(recentBadgeCollectionView)
+        recentBadgeCollectionView.snp.makeConstraints {
             $0.top.equalTo(recentBadgeTitleLabel.snp.bottom).offset(margins / 2)
             $0.leading.trailing.equalTo(recentBadgeView)
             $0.bottom.equalTo(recentBadgeView).offset(-margins * 2)
+        }
+        
+        mainScrollView.addSubview(talentCollectionView)
+        talentCollectionView.snp.makeConstraints {
+            $0.top.equalTo(recentBadgeView.snp.bottom).offset(margins * 2)
+            $0.leading.trailing.equalTo(view).inset(margins)
+            $0.bottom.equalTo(mainScrollView).offset(-margins * 2)
+            $0.height.equalTo(260).priority(999)
+        }
+        
+        mainScrollView.addSubview(pageControl)
+        pageControl.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(talentCollectionView).offset(-5)
         }
     }
 }
@@ -357,8 +396,10 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == thirdBadgeCollectionView {
             return badgeData.count
-        } else {
+        } else if collectionView == recentBadgeCollectionView {
             return recordData.count
+        } else {
+            return 5
         }
     }
     
@@ -368,9 +409,13 @@ extension MainViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BadgeCircleCell.identifier, for: indexPath) as! BadgeCircleCell
             cell.setProperties(badge: badgeData[indexPath.item])
             return cell
-        case recentBadgeCollectionVIew:
+        case recentBadgeCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentBadgeCell.identifier, for: indexPath) as! RecentBadgeCell
             cell.setProperties(record: recordData[indexPath.item])
+            return cell
+        case talentCollectionView:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TalentCell.identifier, for: indexPath) as! TalentCell
+            //            cell.setProperties(record: recordData[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -378,9 +423,18 @@ extension MainViewController: UICollectionViewDataSource {
     }
 }
 
-extension MainViewController: UIScrollViewDelegate {
+extension MainViewController: UICollectionViewDelegate, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        moveAnimate(scrollView.contentOffset.y)
+        if scrollView == mainScrollView {
+            moveAnimate(scrollView.contentOffset.y)
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView == talentCollectionView {
+            let currentPage = Int(targetContentOffset.pointee.x / view.frame.width) + 1
+            self.currentPage = currentPage
+        }
     }
 }
 

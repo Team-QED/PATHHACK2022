@@ -55,8 +55,8 @@ class RecentBadgeCell: UICollectionViewCell {
         for i in 0..<sortedInTypes.count where i < 3 {
             let item = sortedInTypes[i]
             self.workingLael.text! += i == 2
-            ? "\(item.inType.name): \(item.point)"
-            : "\(item.inType.name): \(item.point)\n\n"
+            ? "\(item.inType.name): +\(item.point)"
+            : "\(item.inType.name): +\(item.point)\n\n"
         }
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
