@@ -41,6 +41,8 @@
 		CF4FA459281C4D5F00F9EA3E /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA458281C4D5F00F9EA3E /* CertificationViewController.swift */; };
 		CF4FA45E281C5BB600F9EA3E /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA45D281C5BB600F9EA3E /* PDFViewer.swift */; };
 		CF4FA460281C642A00F9EA3E /* TalentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA45F281C642A00F9EA3E /* TalentCell.swift */; };
+		CF4FA463281C7D0000F9EA3E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA462281C7D0000F9EA3E /* PopUpViewController.swift */; };
+		CF4FA465281C835900F9EA3E /* firework.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4FA464281C835900F9EA3E /* firework.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,8 @@
 		CF4FA458281C4D5F00F9EA3E /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		CF4FA45D281C5BB600F9EA3E /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
 		CF4FA45F281C642A00F9EA3E /* TalentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentCell.swift; sourceTree = "<group>"; };
+		CF4FA462281C7D0000F9EA3E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		CF4FA464281C835900F9EA3E /* firework.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = firework.gif; sourceTree = "<group>"; };
 		E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.debug.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,7 @@
 		4F0F571A281BCCEB006B6F04 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				CF4FA464281C835900F9EA3E /* firework.gif */,
 				4FAB7BF7281BBD0100864EC2 /* Info.plist */,
 				4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */,
 				4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */,
@@ -186,6 +191,7 @@
 				4FAB7BE9281BBD0000864EC2 /* AppDelegate.swift */,
 				4FAB7BEB281BBD0000864EC2 /* SceneDelegate.swift */,
 				4FAB7BED281BBD0000864EC2 /* ViewController.swift */,
+				CF4FA461281C7CF000F9EA3E /* PopUp */,
 				CF4FA45C281C5B9F00F9EA3E /* PDF */,
 				4FCA064C281C492B00B8ED9D /* QR */,
 				4F0F5714281BCC68006B6F04 /* Splash */,
@@ -268,6 +274,14 @@
 			path = PDF;
 			sourceTree = "<group>";
 		};
+		CF4FA461281C7CF000F9EA3E /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				CF4FA462281C7D0000F9EA3E /* PopUpViewController.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,6 +345,7 @@
 				4FAB7BF6281BBD0100864EC2 /* LaunchScreen.storyboard in Resources */,
 				CF423309281C1AEE0088A33B /* NotoSansCJKkr-Regular.otf in Resources */,
 				4FAB7BF3281BBD0100864EC2 /* Assets.xcassets in Resources */,
+				CF4FA465281C835900F9EA3E /* firework.gif in Resources */,
 				CF423308281C1AEE0088A33B /* NotoSansCJKkr-Bold.otf in Resources */,
 				CF42330A281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf in Resources */,
 			);
@@ -397,6 +412,7 @@
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
 				CF4FA459281C4D5F00F9EA3E /* CertificationViewController.swift in Sources */,
 				CF4FA44F281C21EA00F9EA3E /* UIApplication+Extensions.swift in Sources */,
+				CF4FA463281C7D0000F9EA3E /* PopUpViewController.swift in Sources */,
 				70DA4FC8281C3BED00D06419 /* AssessmentCollectionViewCell.swift in Sources */,
 				4FCA0643281C34E200B8ED9D /* AddCollectionViewCell.swift in Sources */,
 				CF4FA456281C421600F9EA3E /* Date+Extensions.swift in Sources */,
@@ -552,7 +568,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -582,7 +598,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

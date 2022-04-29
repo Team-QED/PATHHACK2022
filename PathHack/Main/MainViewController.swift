@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
         $0.backgroundColor = .appColor(.daisyColor)
     }
     private let titleLabel = UILabel().then {
-        $0.text = "당신은\n\n런닝왕"
+        $0.text = "당신은\n\n독서왕"
         $0.textColor = .appColor(.darkGreenColor)
         $0.font = .systemFont(ofSize: 36, weight: .bold)
         $0.numberOfLines = 0
@@ -51,7 +51,7 @@ class MainViewController: UIViewController {
         $0.text = """
         어제의
         당신은
-        러닝을
+        독서를
         가장
         완벽하게
         하셨군요!
@@ -225,6 +225,22 @@ class MainViewController: UIViewController {
         super.loadView()
         attribute()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        thirdBadgeCollectionView.reloadData()
+        recentBadgeCollectionView.reloadData()
+        talentCollectionView.reloadData()
+        
+        if badgeData[3].level == .gold {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let popUpViewController = PopUpViewController()
+                popUpViewController.modalPresentationStyle = .overFullScreen
+                self.present(popUpViewController, animated: false)
+            }
+        }
     }
     
     private func moveAnimate(_ y: CGFloat) {
