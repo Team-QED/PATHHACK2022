@@ -94,7 +94,7 @@ class AssessmentViewController: UIViewController {
     }
     
     @objc private func didTapSendButton() {
-        badgeData[1].currRecord += 8
+        badgeData[3].currRecord += 8
         navigationController?.popToRootViewController(animated: true)
     }
     
