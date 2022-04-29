@@ -49,6 +49,11 @@ extension AddViewController: UICollectionViewDataSource {
         cell.setData(inType: Badge.InType.allCases[indexPath.row])
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = AssessmentViewController()
+        navigationController?.pushViewController(vc, animated: false)
+    }
 }
 
 
