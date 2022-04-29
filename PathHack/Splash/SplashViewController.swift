@@ -50,9 +50,9 @@ class SplashViewController: UIViewController {
         let naviBar = UINavigationBar.appearance()
         naviBar.tintColor = .black
         naviBar.backItem?.title = "  "
-        
-        let barButton = UIBarButtonItem(title: " ", style: .done, target: nil, action: nil)
-        barButton.tintColor = .black
+
+        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
 
         let mainVC = MainViewController()
         let naiVC = UINavigationController(rootViewController: mainVC)
@@ -64,7 +64,6 @@ class SplashViewController: UIViewController {
         app.shadowImage = nil
         app.backgroundImage = nil
         naiVC.navigationController?.navigationBar.standardAppearance = app
-        mainVC.navigationItem.backBarButtonItem = barButton
         
         self.present(naiVC, animated: true)
     }
