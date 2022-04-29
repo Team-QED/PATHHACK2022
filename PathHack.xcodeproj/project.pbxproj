@@ -29,6 +29,7 @@
 		CF423309281C1AEE0088A33B /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF423306281C1AEE0088A33B /* NotoSansCJKkr-Regular.otf */; };
 		CF42330A281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF423307281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf */; };
 		CF4FA44F281C21EA00F9EA3E /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA44E281C21EA00F9EA3E /* UIApplication+Extensions.swift */; };
+		CF4FA452281C37EE00F9EA3E /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA451281C37EE00F9EA3E /* UICollectionView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		CF423306281C1AEE0088A33B /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		CF423307281C1AEE0088A33B /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		CF4FA44E281C21EA00F9EA3E /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		CF4FA451281C37EE00F9EA3E /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.debug.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +196,7 @@
 				CF224148281BF66100C77CC7 /* UIColor+Extensions.swift */,
 				CF423303281C17E80088A33B /* UIFont+Extensions.swift */,
 				CF4FA44E281C21EA00F9EA3E /* UIApplication+Extensions.swift */,
+				CF4FA451281C37EE00F9EA3E /* UICollectionView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */,
+				CF4FA452281C37EE00F9EA3E /* UICollectionView+Extensions.swift in Sources */,
 				4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */,
 				CF224147281BF0C400C77CC7 /* BadgeCircleCell.swift in Sources */,
 				70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */,
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -509,7 +513,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KTUDJ7GBJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PathHack/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
