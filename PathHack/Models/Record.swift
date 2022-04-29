@@ -16,7 +16,7 @@ struct InTypeDetail {
     let inType: Badge.InType
     let point: Int
     var imageName: String {
-        inType.rawValue + "_bronze"
+        inType.rawValue + "_normal"
     }
 }
 
