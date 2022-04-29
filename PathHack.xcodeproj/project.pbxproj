@@ -17,6 +17,7 @@
 		4FAB7BF1281BBD0000864EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BEF281BBD0000864EC2 /* Main.storyboard */; };
 		4FAB7BF3281BBD0100864EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */; };
 		4FAB7BF6281BBD0100864EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAB7BF4281BBD0100864EC2 /* LaunchScreen.storyboard */; };
+		70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */; };
 		824F2B28A0BC52D172607E9B /* Pods_PathHack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFB3004B7B15228C18901CF /* Pods_PathHack.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		4FAB7BF2281BBD0100864EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FAB7BF5281BBD0100864EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FAB7BF7281BBD0100864EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		E632C76383A611C5306A6770 /* Pods-PathHack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathHack.debug.xcconfig"; path = "Target Support Files/Pods-PathHack/Pods-PathHack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 		4F0F5717281BCC90006B6F04 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				70FA5D18281BEA3500EEC2B7 /* Cell */,
 				4F0F571F281BCD4C006B6F04 /* DetailViewController.swift */,
 			);
 			path = Detail;
@@ -141,6 +144,14 @@
 				4F0F571A281BCCEB006B6F04 /* Support */,
 			);
 			path = PathHack;
+			sourceTree = "<group>";
+		};
+		70FA5D18281BEA3500EEC2B7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				70FA5D19281BEA6600EEC2B7 /* DetailTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +271,7 @@
 			files = (
 				4F0F5722281BCD57006B6F04 /* MainViewController.swift in Sources */,
 				4F0F571E281BCD40006B6F04 /* AddViewController.swift in Sources */,
+				70FA5D1A281BEA6600EEC2B7 /* DetailTableViewCell.swift in Sources */,
 				4FAB7BEE281BBD0000864EC2 /* ViewController.swift in Sources */,
 				4FAB7BEA281BBD0000864EC2 /* AppDelegate.swift in Sources */,
 				4F0F5720281BCD4C006B6F04 /* DetailViewController.swift in Sources */,
