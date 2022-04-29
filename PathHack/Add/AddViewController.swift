@@ -26,6 +26,8 @@ final class AddViewController: UIViewController {
     }
     
     private func setUI() {
+        self.view.backgroundColor = .white
+        
         self.collectionView.register(AddCollectionViewCell.self, forCellWithReuseIdentifier: AddCollectionViewCell.identifier)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self

@@ -29,7 +29,7 @@ class AddCollectionViewCell: UICollectionViewCell {
         let imageName = inType.rawValue + "_gold"
         self.imageView.image = UIImage(named: imageName)
         self.titleLabel.text = inType.name
-        self.titleLabel.font = UIFont.mySystemFont(ofSize: 12, weight: .bold)
+        self.titleLabel.font = UIFont.mySystemFont(ofSize: 12, weight: .medium)
     }
 }
 
