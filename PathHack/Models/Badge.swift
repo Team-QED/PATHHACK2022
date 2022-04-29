@@ -50,7 +50,7 @@ struct Badge: Hashable {
         }
     }
     
-    enum InType: String {
+    enum InType: String, CaseIterable {
         case book
         case running
         case movie
